@@ -1,0 +1,669 @@
+/* *************** Custom Propeties *************** */
+/* son propiedades especificas para cada proyecto individual */
+:root {
+  --first-color: #d90062;
+  --first-alpha-color: rgba(217, 0, 98, 0.75);
+  --second-color: #14192d;
+  --second-alpha-color: rgba(20, 25, 45, 0.75);
+  --third-color: #501464;
+  --third-alpha-color: rgba(80, 20, 100, 0.75);
+  --white-color: #ffffff;
+  --gray-light-color: #f3f3f3;
+  --gray-color: #cccccc;
+  --gray-dark-color: #666666;
+  --black-color: #000;
+  --link-color: #509ee3;
+  --title-color: #333333;
+  --text-color: #222222;
+  --white-alpha-color: rgba(255, 255, 255, 0.5);
+  --black-alpha-color: rgba(0, 0, 0, 0.5);
+  --font: "Raleway", sans-serif;
+  --max-width: 1200px;
+  --header-height: 4rem;
+}
+/* *************** Reset *************** */
+/* son propiedades generales de reseteo para proyectos similares */
+html {
+  box-sizing: border-box; /* cajas sin bordes */
+  font-family: var(--font); /* fuente definida en el root */
+  font-size: 16px; /* valor definido relativo al rem */
+  scroll-behavior: smooth; /* animacion de transición entre el scroll */
+}
+*,
+*::after,
+*::before {
+  box-sizing: inherit; /* heredar las cajas sin bordes */
+}
+body {
+  margin: 0;
+  overflow-x: hidden; /* que pasa con el contenedor cuando desborde  elimina la barra de desplazamiento horizontal*/
+  color: var(--text-color);
+}
+a {
+  color: var(--text-color);
+  transition: all 0.5s ease-out; /* transicion de 0.5 segundos */
+}
+a:hover {
+  opacity: 0.75; /* se le baja la opacidad al 75% */
+}
+h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+h3 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+h4 {
+  margin: 0;
+  font-size: 1rem;
+}
+h5 {
+  margin: 0;
+  font-size: 0.85rem;
+}
+h6 {
+  margin: 0;
+  font-size: 0.7rem;
+}
+img {
+  max-width: 100%; /* imagenes responsive maxima anchura en el contenedor que este */
+  height: auto; /* y una altura automatica */
+}
+p {
+  line-height: 1.6; /* interlineado  */
+}
+/* *************** Components *************** */
+
+/* *************** Carousel *************** */
+@keyframes carousel-slide {
+  0% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-25%);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  75% {
+    transform: translateX(-75%);
+  }
+}
+.carousel {
+  /* Estilos generales del contenedor del carrusel, como tamaño máximo, centrado, color de fondo */
+  margin: 2rem auto; /* separacion entre el contenedor arriba y abajo 2rem y a la derecha e izquierda 0 */
+  padding: 2rem 0; /* separacion entre elementos arriba y abajo 2rem y a la derecha e izquierda 0 */
+  max-width: 800px; /* defina el maximo de ancho del carousel */
+  text-align: center; /* alinea los textos al centro */
+  overflow-x: hidden; /* oculta lo que desborda en el eje X horizontal */
+  background-color: var(
+    --carousel-bg-color
+  ); /* color de fondo establecido de forma directa en el html */
+}
+.carousel .slides {
+  padding-left: 0; /* le quitamos la sangria o margen izquierdo de los li */
+  /* 100% por cada slide / tengamos en cuenta los slide ocupan 100% a la vista*/
+  width: 400%; /* dimencion proporcional a los elementos que estaran dentro del slide */
+  display: flex; /* aplica flexbox para que los elementos se ordenen tomando el espacion lateral */
+  transition: transform 0.5s ease-in-out; /* la transicion generada en el tiempo, el ritmo designado */
+  animation: carousel-slide 12s ease-in-out 1s;
+}
+.carousel input {
+  display: none; /* oculta los circulos de los input radio por defecto */
+}
+.carousel label {
+  border: medium solid var(--gray-dark-color); /* al estar vacios de texto no se aprecian por ello deben aplicar bordes en todas sus direcciones para dibujar un poligono */
+  border-radius: 50%; /* el poligono se transforma en un circulo */
+  margin: 0 0.25rem; /* define margen superior e inferior 0 y los laterales solo con 0.25rem */
+  display: inline-block; /* apila los elementos uno al lado del otro */
+  width: 0.75rem; /* define las dimensiones discreto */
+  height: 0.75rem; /* define las dimensiones discreto */
+  cursor: pointer; /* al no tener interacion por defecto se le coloca esta propiedad para que el curso interactue con el label */
+}
+#slide-1:checked ~ .slides {
+  /* toma el id del input radio el cual esta designado como checked, para inicial la interaccion con el elemento que esta adyacente  con la clase slides */
+  transform: translateX(
+    0%
+  ); /* aplica una transformacion de tipo trasladar en el eje X a 0% o sea el segundo elemento  */
+}
+#slide-2:checked ~ .slides {
+  transform: translateX(
+    -25%
+  ); /* aplica una transformacion de tipo trasladar en el eje X a 25% o sea el segundo elemento  */
+}
+#slide-3:checked ~ .slides {
+  transform: translateX(
+    -50%
+  ); /* aplica una transformacion de tipo trasladar en el eje X a 50% o sea el segundo elemento  */
+}
+#slide-4:checked ~ .slides {
+  transform: translateX(
+    -75%
+  ); /* aplica una transformacion de tipo trasladar en el eje X a 75% o sea el segundo elemento  */
+}
+#slide-1:checked ~ .slides-nav label#dot-1 {
+  /* tomando en cuenta el input con id #slide-1 si esta en el estado :checked (marcado), entonces interactura ( ~ ) con el elemento con la clase .slides-nav quien es hijo del mismo padre, y este abajo del primer marcado html, en este caso un label con el id #dot-1 a quien aplica el siguiente cambio */
+  background-color: var(
+    --gray-dark-color
+  ); /* si la condicion anterior se cumple aplica este color al label */
+}
+#slide-2:checked ~ .slides-nav label#dot-2 {
+  /* tomando en cuenta el input con id #slide-2 si esta en el estado :checked (marcado), entonces interactura ( ~ ) con el elemento con la clase .slides-nav quien es hijo del mismo padre, y este abajo del primer marcado html, en este caso un label con el id #dot-1 a quien aplica el siguiente cambio */
+  background-color: var(
+    --gray-dark-color
+  ); /* si la condicion anterior se cumple aplica este color al label */
+}
+#slide-3:checked ~ .slides-nav label#dot-3 {
+  /* tomando en cuenta el input con id #slide-3 si esta en el estado :checked (marcado), entonces interactura ( ~ ) con el elemento con la clase .slides-nav quien es hijo del mismo padre, y este abajo del primer marcado html, en este caso un label con el id #dot-1 a quien aplica el siguiente cambio */
+  background-color: var(
+    --gray-dark-color
+  ); /* si la condicion anterior se cumple aplica este color al label */
+}
+#slide-4:checked ~ .slides-nav label#dot-4 {
+  /* tomando en cuenta el input con id #slide-4 si esta en el estado :checked (marcado), entonces interactura ( ~ ) con el elemento con la clase .slides-nav quien es hijo del mismo padre, y este abajo del primer marcado html, en este caso un label con el id #dot-1 a quien aplica el siguiente cambio */
+  background-color: var(
+    --gray-dark-color
+  ); /* si la condicion anterior se cumple aplica este color al label */
+}
+/* *************** Contact form *************** */
+.contact-form {
+  margin: 2rem auto;
+  padding: 1rem;
+  max-width: 800px;
+}
+.contact-form > * {
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  width: 100%;
+}
+.contact-form input,
+.contact-form textarea {
+  font-size: 1.85rem;
+  font-family: var(--font);
+}
+.contact-form input {
+  border: 0;
+  padding-left: 0;
+  border-bottom: thin solid var(--gray-dark-color);
+}
+.contact-form textarea {
+  border: thin solid var(--gray-dark-color);
+  resize: none;
+}
+.contact-form input[type="submit"] {
+  margin-top: 0;
+  cursor: pointer;
+  transition: all 0.5s ease-out;
+}
+.contact-form input[type="submit"]:hover {
+  opacity: 0.75;
+}
+.contact-form *::placeholder {
+  color: var(--gray-dark-color);
+}
+.modal#gracias:target {
+  opacity: 1;
+  pointer-events: auto;
+}
+.contact-form-response {
+  padding: 1rem;
+  width: 400px;
+  text-align: center;
+  background-color: var(--white-color);
+}
+.contact-form-response svg {
+  margin-top: 2rem;
+  width: 4rem;
+  height: 4rem;
+  fill: var(--first-color);
+}
+@media screen and (min-width: 1024px) {
+  .contact-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+  }
+  .contact-form textarea,
+  .contact-form-loader {
+    grid-column: span 2;
+  }
+  .contact-form input[type="submit"] {
+    margin-left: 0;
+  }
+}
+
+/* *************** Heroimage *************** */
+.hero-image {
+  background-image: var(
+    --hero-image
+  ); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--image:url(/assets/hero-image-home.jpg)"> // ya que no interfiere con los utilitis y components y luego es llamada aca*/
+  background-repeat: no-repeat; /* no repite la imagen en el contenedor */
+  background-size: cover; /* ajustaa la imagen en el espacio del contenedor */
+  background-position: center; /* centra el elemento en el contenedor */
+  background-attachment: var(
+    --hero-attachment
+  ); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--attachment:fixed;"> 
+  el fondo no se mueve con el elemento // ya que no interfiere con los utilitis y components y luego es llamada aca*/
+}
+.hero-image-opacity {
+  width: 100%; /* define el ancho en responsive para ocupar siempre su totalidad */
+  min-height: 100vh; /* define su minimo tamanio de altura en el 100% del viewport */
+  display: flex; /* establece flex para utilizar las propiedades de centrado perfecto */
+  justify-content: center; /* ajusta los elementos de eje x */
+  align-items: center; /* aline los elementos de eje y */
+  text-align: center;
+  background-color: var(--opacity-color); /* definida en el HTML */
+}
+.hero-image-title {
+  font-size: 7.5vw;
+  color: var(--hero-texto-color);
+}
+/* *************** Menu *************** */
+.menu-btn {
+  background-color: var(--second-color);
+  outline: thin solid var(--first-color); /* es usada para establecer el estilo del contorno de un elemento. Un contorno es una línea que se dibuja al rededor de elementos, fuera de los límites del borde, para resaltar un elemento. */
+  border: 0; /* elimina el borde por defecto */
+  cursor: pointer; /* cuando el curso este arriba de este elemento cambia a una manito */
+}
+.menu-btn svg {
+  fill: var(
+    --first-color
+  ); /* aplica colores de relleno a los vectores del svg */
+}
+.menu {
+  /*  display: none; */
+  position: fixed; /* pierde sus propiedades de ancho y alto */
+  left: 0;
+  bottom: var(--header-height);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--second-color);
+  transition: opacity 0.5s ease;
+  opacity: 0; /* hace opaco el menu ocultandolo */
+  pointer-events: none; /* esto hace que los elementos ocultos por la propiedad opacity no tengan interaccion involuntaria*/
+}
+.menu.is-active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.menu a {
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--first-color);
+}
+.menu a:hover {
+  color: var(--white-color);
+  background-color: var(--first-color);
+}
+@media screen and (min-width: 1024px) {
+  .menu-btn {
+    display: none; /* oculta el boton de hamburguesa */
+  }
+  .menu {
+    position: static; /* coloca el menu a su posicion natural por defecto */
+    width: auto; /* para que tome nuevamente el ancho de la pantalla */
+    flex-direction: row; /* esto cambia la distribucion de los elementos para que esten en horizontal  */
+    opacity: 1; /*  hace visible el menu  */
+    pointer-events: auto; /* coloca la interaccion de los enlaces al cursor */
+  }
+  .menu a {
+    padding: 0 1rem; /*  esto es por que en mobil tenian un padding de 1 rem en todas las direcciones y ahora solo se requiere a los lados  */
+  }
+  .menu a:hover {
+    background-color: transparent;
+  }
+  .menu a:last-child {
+    padding-right: 0;
+  }
+}
+
+/* *************** Modal *************** */
+.modal {
+  position: fixed; /*  psocion fija en la pantalla */
+  z-index: 999; /* esta en una capa superior */
+  top: 0; /* sin ditancia de altura */
+  right: 0; /* sin distancia hacia derecha */
+  bottom: 0; /* sin distancia de abajo */
+  left: 0; /* sin distancia hacia la izquierda */
+  display: flex; /* aplica flexbox para centrado */
+  justify-content: center; /* aplica centrado eje X */
+  align-items: center; /*  aplica centrado eje Y */
+  background-color: var(--black-alpha-color);
+  opacity: 0; /* hace que este transparente  */
+  pointer-events: none; /* quita la interaccion con el cursor */
+  transition: all 1s; /* genera la transicion para todas las caracteristicas a 1 SEGUNDO */
+}
+.modal-content {
+  position: relative; /* su posicion es relativa o de referencia */
+}
+.modal-close {
+  position: absolute; /* su pocision es absoluta tomando en cuenta la referencia del padre */
+  top: 1rem;
+  right: 1rem;
+}
+.modal-close svg {
+  width: 3rem; /* dimensiona en ancho el svg */
+  height: 3rem; /* dimensiona en alto el svg */
+  fill: var(--first-color); /* aplica color al svg */
+}
+/* selector de atributos [] */
+/* Esta parte es un selector de atributos. Busca elementos "modal" cuyo atributo "id" comience con la palabra "trabajo" seguido de un guion (-). Por ejemplo, podría coincidir con elementos con id como "trabajo-1", "trabajo-2", etc., pero no con "mi-trabajo" o "trabajos */
+.modal[id|="trabajo"]:target {
+  /* Este es un pseudo-selector que selecciona el elemento que es el objetivo actual de un fragmento de URL. Es decir, si la URL de la página contiene "#trabajo-1", este selector coincidirá con el elemento cuyo id es "trabajo-1".*/
+  opacity: 1; /* quita la opacity 0 */
+  pointer-events: auto; /* activa los eventos del cursor */
+}
+
+/* *************** ProgressBar *************** */
+progress {
+  /* etiqueta html de barra de progreso */
+  width: 100%;
+  height: 1rem;
+  background-color: var(--gray-color);
+}
+progress::-webkit-progress-bar {
+  background-color: var(--gray-color);
+}
+progress::-webkit-progress-value {
+  background-color: var(--gray-dark-color);
+}
+progress::-moz-progress-bar {
+  background-color: var(--gray-dark-color);
+}
+.progress {
+  margin: 1rem auto;
+}
+.progress p {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+/* *************** Utilities *************** */
+.avatar {
+  /* clase utilitaria para fotos de perfil */
+  border-radius: 50%; /* combierte en un circulo  */
+  width: 100px; /* define el ancho */
+  height: 100px; /* define el alto */
+}
+.bg-gray-light {
+  background-color: var(--gray-light-color);
+}
+.box-shadow-1 {
+  /* sombra a cards */
+  box-shadow: 0.25rem 0.25rem 1rem rgba(0, 0, 0, 0.25);
+}
+.btn {
+  /* clase boton  */
+  border-radius: 0.5rem;
+  padding: 1rem;
+  display: inline-block;
+  width: 200px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: var(--white-color);
+  background-color: var(--first-color);
+}
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: var(--max-width);
+}
+.gray-scale {
+  filter: grayscale(1);
+}
+.none {
+  display: none;
+}
+.section {
+  padding: 2rem 1rem;
+}
+.section-title {
+  border-top: thin solid var(--first-color);
+  border-bottom: thin solid var(--first-color);
+  width: 250px;
+  margin: 2rem auto;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: var(--title-color);
+}
+.text-first-color {
+  color: var(--first-color);
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+@media screen and (min-width: 1024px) {
+  .full-lg-screen {
+    width: 100%;
+    min-height: 100vh;
+  }
+  .text-lg-center {
+    text-align: center;
+  }
+  .text-lg-left {
+    text-align: left;
+  }
+  .text-lg-right {
+    text-align: right;
+  }
+}
+/* *************** Site Styles *************** */
+.about > article {
+  margin-bottom: 2rem;
+}
+.contact-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 100%;
+  height: 144px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.contact-card svg {
+  width: 2rem;
+  height: 2rem;
+  fill: var(--first-color);
+}
+.contact-card small {
+  margin-top: -1rem;
+}
+.footer {
+  margin-bottom: var(--header-height);
+  padding: 0.5rem;
+  text-align: center;
+  color: var(--white-color);
+  background-color: var(--third-color);
+}
+
+.header {
+  position: fixed;
+  left: 0; /* se posiciona a la izquierda  */
+  bottom: 0; /* se posiciona abajo por que primero es movil */
+  z-index: 999;
+  width: 100%; /* por la position fixed pierde sus dimensiones  */
+  height: var(--header-height); /* asigna un calor como variable */
+  background-color: var(--second-color);
+}
+.header > .container {
+  display: flex;
+  justify-content: space-between; /* separa los elementos con una proporcion de margen a cada elemento  */
+  align-items: center; /* para centrar en eje Y los elementos  */
+}
+.logo a {
+  color: var(--first-color);
+  font-weight: bold;
+  font-size: 2rem;
+  text-decoration: none;
+}
+.portfolio-card {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+}
+.portfolio-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.portfolio-card-info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--first-alpha-color);
+  color: var(--white-color);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+.portfolio-modal {
+  padding: 1rem;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white-color);
+}
+.portfolio-modal h3 {
+  border-bottom: medium solid var(--first-color);
+  padding: 0.5rem 0;
+  margin: 1rem auto;
+  color: var(--title-color);
+}
+.portfolio-details {
+  display: grid;
+  grid-template-columns: 40% 60%;
+  grid-auto-rows: 2rem;
+}
+.portfolio-details b {
+  color: var(--first-color);
+}
+.portfolio-card-info div {
+  padding: 1rem;
+  border: thin solid var(--white-color);
+}
+.portfolio-card:hover .portfolio-card-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+.portfolio-card:hover .portfolio-card-info {
+  opacity: 1;
+  pointer-events: auto;
+}
+.service-card {
+  margin: 1rem auto;
+  padding: 1rem;
+  text-align: center;
+}
+.service-card svg {
+  fill: var(--first-color);
+  margin-bottom: 1.25rem;
+}
+.social-media a {
+  padding: 0 0.4rem;
+  text-decoration: none;
+}
+.social-media svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+.service-card h3 {
+  color: var(--title-color);
+}
+@media screen and (min-width: 768px) {
+  .contact-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 48%);
+    justify-content: space-between;
+  }
+  .portfolio > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+  }
+  .portfolio .section-title {
+    grid-column: span 2;
+  }
+  .portfolio-modal {
+    /* padding: 1rem;
+    display: flex; */
+    max-width: 800px;
+    flex-direction: row;
+    /* background-color: var(--white-color); */
+  }
+  .portfolio-info {
+    margin-left: 1rem;
+    align-self: center;
+  }
+  .services > .container {
+    display: grid;
+    grid-template-columns: repeat(2, 45%);
+    justify-content: space-between;
+    align-content: center;
+  }
+  .services .section-title {
+    grid-column: span 2;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .contact-cards {
+    grid-template-columns: repeat(4, 24%);
+  }
+  .footer {
+    margin-bottom: 0;
+  }
+  .portfolio > .container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .portfolio .section-title {
+    grid-column: span 3;
+  }
+  .about {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: space-between;
+    align-content: center;
+  }
+  .header {
+    position: sticky; /* es una mezcla del comportamiento fiji fixed y relativo, es decir se va a colocar como elemento fijo cuando llegue a la altura definida */
+    top: 0; /* define la altura 0 para dejar fijo el header segun sticky */
+    padding: 0.5rem; /* suma paddng */
+    height: calc(
+      var(--header-height) - 0.5rem
+    ); /* resta el padin de la altura del header */
+  }
+  .services > .container {
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    justify-content: space-between;
+    align-content: center;
+  }
+  .services .section-title {
+    grid-column: span 3;
+  }
+}
