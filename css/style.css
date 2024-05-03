@@ -246,7 +246,7 @@ p {
 .hero-image {
   background-image: var(
     --hero-image
-  ); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--image:url(/assets/hero-image-home.jpg)"> // ya que no interfiere con los utilitis y components y luego es llamada aca*/
+  ); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--image:url(./assets/hero-image-home.jpg)"> // ya que no interfiere con los utilitis y components y luego es llamada aca*/
   background-repeat: no-repeat; /* no repite la imagen en el contenedor */
   background-size: cover; /* ajustaa la imagen en el espacio del contenedor */
   background-position: center; /* centra el elemento en el contenedor */
