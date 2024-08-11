@@ -1,12 +1,12 @@
 /* *************** Custom Propeties *************** */
 /* son propiedades especificas para cada proyecto individual */
 :root {
-  --first-color: #d90062;
-  --first-alpha-color: rgba(217, 0, 98, 0.75);
-  --second-color: #14192d;
-  --second-alpha-color: rgba(20, 25, 45, 0.75);
-  --third-color: #501464;
-  --third-alpha-color: rgba(80, 20, 100, 0.75);
+  --first-color: #997267ff;
+  --first-alpha-color: #bbbdb9ff;
+  --second-color: #171A1Cff;
+  --second-alpha-color: #211D1Dff;
+  --third-color: #0A0909ff;
+  --third-alpha-color: rgb(38, 33, 33);
   --white-color: #ffffff;
   --gray-light-color: #f3f3f3;
   --gray-color: #cccccc;
@@ -111,7 +111,7 @@ p {
   width: 400%; /* dimencion proporcional a los elementos que estaran dentro del slide */
   display: flex; /* aplica flexbox para que los elementos se ordenen tomando el espacion lateral */
   transition: transform 0.5s ease-in-out; /* la transicion generada en el tiempo, el ritmo designado */
-  animation: carousel-slide 12s ease-in-out 1s;
+  animation: carousel-slide 12s linear infinite;
 }
 .carousel input {
   display: none; /* oculta los circulos de los input radio por defecto */
@@ -427,8 +427,8 @@ progress::-moz-progress-bar {
   margin-right: auto;
   max-width: var(--max-width);
 }
-.gray-scale {
-  filter: grayscale(1);
+.contrast-scale {
+  filter: contrast(200%);
 }
 .none {
   display: none;
