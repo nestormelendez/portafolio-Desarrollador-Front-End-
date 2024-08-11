@@ -427,7 +427,7 @@ progress::-moz-progress-bar {
   text-decoration: none;
   color: var(--white-color);
 }
-.--submit{
+.--submit {
   height: auto;
   font-size: 1em;
 }
@@ -438,6 +438,17 @@ progress::-moz-progress-bar {
 }
 .contrast-scale {
   filter: contrast(100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.perfil-photo {
+  border-radius: 50%;
+  object-fit: cover;
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
 }
 .none {
   display: none;
@@ -482,8 +493,12 @@ progress::-moz-progress-bar {
   }
 }
 /* *************** Site Styles *************** */
-.about > article {
+.about > article:nth-child(odd) {
   margin-bottom: 2rem;
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  padding: 10px;
 }
 .contact-card {
   margin: 1rem auto;
@@ -536,10 +551,15 @@ progress::-moz-progress-bar {
 }
 .portfolio {
   display: flex;
- 
+
   gap: 50px;
 }
 .portfolio-card {
+  -webkit-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 10px 24px 0px rgba(0, 0, 0, 0.75);
+  border: 2px solid var(--second-alpha-color);
+  border-radius: 5px;
   position: relative;
   width: 100%;
   margin: 0 auto;
@@ -664,7 +684,6 @@ progress::-moz-progress-bar {
     height: auto;
     object-fit: contain;
   }
-  
 }
 @media screen and (min-width: 1024px) {
   .contact-cards {
