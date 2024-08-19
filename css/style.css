@@ -700,6 +700,7 @@ progress::-moz-progress-bar {
   }
   .about {
     display: grid;
+    margin-top: 50px;
     grid-template-columns: repeat(3, 30%);
     justify-content: space-between;
     align-content: center;
