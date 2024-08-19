@@ -656,6 +656,16 @@ progress::-moz-progress-bar {
     gap: 20px;
     grid-template-columns: repeat(2, 50%);
   }
+  .hero-image {
+    background-image: url("./assets/hero-imagen-1.jpg"); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--image:url(./assets/hero-image-home.jpg)"> // ya que no interfiere con los utilitis y components y luego es llamada aca*/
+    background-repeat: no-repeat; /* no repite la imagen en el contenedor */
+    background-size: cover; /* ajustaa la imagen en el espacio del contenedor */
+    background-position: center; /* centra el elemento en el contenedor */
+    background-attachment: var(
+      --hero-attachment
+    ); /* esta  variable esta definida directamente en el HTML de esta fomra // <article class="hero-image" style="--attachment:fixed;"> 
+    el fondo no se mueve con el elemento // ya que no interfiere con los utilitis y components y luego es llamada aca*/
+  }
   .portfolio .section-title {
     grid-column: span 2;
   }
